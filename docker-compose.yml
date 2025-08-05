@@ -1,0 +1,19 @@
+
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.backend
+    container_name: yt-backend
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.frontend
+    container_name: yt-frontend
+    ports:
+      - "3003:80"
+    depends_on:
+      - backend

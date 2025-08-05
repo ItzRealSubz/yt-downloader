@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+# Install system dependencies including full ffmpeg (with ffprobe)
+RUN apt-get update && \
+    apt-get install -y ffmpeg curl && \
+    pip install yt-dlp flask && \
+    apt-get clean
+
+WORKDIR /app
+COPY backend/ /app/
+
+EXPOSE 5000
+CMD ["python", "app.py"]
